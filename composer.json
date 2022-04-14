@@ -1,0 +1,26 @@
+{
+    "name": "armezit/getcandy-api",
+    "description": "GetCandy v2 E-Commerce Public REST API",
+    "keywords": ["getcandy", "laravel", "ecommerce", "e-commerce", "headless", "api", "rest-api"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Armin Rezayati",
+            "email": "armin.rezayati@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Armezit\\GetCandy\\Api\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Armezit\\GetCandy\\Api\\ApiServiceProvider"
+            ]
+        }
+    }
+}

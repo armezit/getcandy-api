@@ -1,0 +1,1 @@
+# GetCandy Public REST API
