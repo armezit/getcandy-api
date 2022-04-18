@@ -8,5 +8,6 @@ use Illuminate\Support\Facades\Route;
  */
 Route::controller(CartController::class)->group(function () {
     Route::get('', 'index');
-    Route::post('', 'add');
+    Route::post('', 'saveCart');
+    Route::post('/lines', 'saveCartLine');
 });

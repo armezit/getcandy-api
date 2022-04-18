@@ -24,18 +24,35 @@ class CartController extends BaseController
     }
 
     /**
+     * save batch of cart lines
      * @param Request $request
      * @return CartResource
      */
-    public function add(Request $request)
+    public function saveCart(Request $request)
     {
-        $productVariant = ProductVariant::find($request->get('purchasableId'));
-        $quantity = (int)$request->get('quantity');
-
-        CartSession::add($productVariant, $quantity);
-
+        foreach ($request->get('lines') as $line) {
+            $this->addCartLine($line['purchasableId'], (int)$line['quantity']);
+        }
         $cart = CartSession::current();
         return new CartResource($cart);
+    }
+
+    /**
+     * save a single cart line
+     * @param Request $request
+     * @return CartResource
+     */
+    public function saveCartLine(Request $request)
+    {
+        $this->addCartLine($request->get('purchasableId'), (int)$request->get('quantity'));
+        $cart = CartSession::current();
+        return new CartResource($cart);
+    }
+
+    private function addCartLine($purchasableId, int $quantity)
+    {
+        $productVariant = ProductVariant::find($purchasableId);
+        CartSession::add($productVariant, $quantity);
     }
 
 }
